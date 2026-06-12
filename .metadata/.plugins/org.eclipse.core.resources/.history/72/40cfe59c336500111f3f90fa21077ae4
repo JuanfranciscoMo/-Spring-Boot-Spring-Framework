@@ -1,0 +1,50 @@
+package com.bolsadeideas.springboot.web.app.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.bolsadeideas.springboot.web.app.models.Usuario;
+
+
+@Controller
+@RequestMapping("/app")
+public class IndexController {
+	
+	@GetMapping({"/index","/", "/home", ""})
+	public ModelAndView index(ModelAndView mv) {
+		mv.addObject("titulo", "Hola Spring Framework con Map!");
+		mv.setViewName("index");
+		return mv;
+	}
+	
+	@RequestMapping("/perfil")
+	public String perfil(Model model) {
+		Usuario usuario = new Usuario();
+		usuario.setNombre("Juan");
+		usuario.setApellido("Morales");
+		usuario.setEmail("ejemplo@gmail.com");
+		
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("titulo","perfil del ususario: ".concat(usuario.getNombre() + " "+ usuario.getApellido()));
+		return "perfil";
+	}
+	
+	@RequestMapping("/listar")
+	public String listar(Model model) {
+		List<Usuario> usuarios = new ArrayList<>();
+		usuarios.add(new Usuario("Juan","Morales","juan@email.com"));
+		usuarios.add(new Usuario("Ramón","Morales","ramon@email.com"));
+		usuarios.add(new Usuario("María","Martínez","maria@email.com"));
+		usuarios.add(new Usuario("Yazmin","Morales","yazmin@email.com"));
+		model.addAttribute("titulo","Listado de usuarios");
+		model.addAttribute("usuarios", usuarios);
+		return "listar";
+	}
+
+}
