@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="java.lang.Class">
 		<list key="findhistory">
+			<item value="&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;"/>
 			<item value="maven"/>
 		</list>
 	</section>
